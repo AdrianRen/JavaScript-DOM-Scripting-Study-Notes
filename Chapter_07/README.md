@@ -14,15 +14,18 @@ Chapter 7 动态创建标记
 --
 - 语法: `document.createElement(nodeName);`
 - 无论何时,都建议将创造出来的元素复制个一个变量
+
     ```javascript
       let para = document.createElement('p');
     ```
+
   此时创造出来的`p`元素,成为文档碎片(document fragment),还无法显示在浏览器的窗口里,不过它已经像任何其他的节点那样有了自己的 DOM 属性;
 
 4 `appendChild`
 --
 - 语法: `parent.appendChild(child);`
 - 例子:
+
     ```javascript
       let testdiv = document.getElementById('testdiv');
       let para = document.creatElement('p');
@@ -36,6 +39,7 @@ Chapter 7 动态创建标记
 --
 - 语法: `document.createTextNode(text);`
 - 下面这个代码,将创造出一个内容为"Hello World"的文本节点:
+
   ```javascript
   document.createTextNode('Hello World');
   ```
@@ -47,24 +51,33 @@ Chapter 7 动态创建标记
   创建步骤
   --
   1. 创建一个父级元素
+
   ```html
   <div id="testdiv">
       <!-- 创建一个父级元素 -->
   </div>
   ```
+
   2. 创建一个元素
+
   ```javascript
   let para = document.createElement('p');
   ```
+
   3. 创建文本节点
+
   ```javascript
   let txt = document.createTextNode('Hello World');
   ```
+
   4. 将文本节点拼接到元素节点之上
+
   ```javascript
   para.appendChild(txt);
   ```
+
   5. 将整个`p`元素拼接到父级元素`textdiv`之上
+
   ```javascript
   let testdiv = document.getElementById('testdiv');
   testdiv.appendChild(para);
