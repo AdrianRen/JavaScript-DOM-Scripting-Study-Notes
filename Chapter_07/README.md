@@ -28,7 +28,7 @@ Chapter 7 动态创建标记
 
     ```javascript
       let testdiv = document.getElementById('testdiv');
-      let para = document.creatElement('p');
+      let para = document.createElement('p');
       testdiv.appendChild('para');
       // 上面的代码可以写为:
       document.getElementById('testdiv').appendChild(document.createElement('p'));
