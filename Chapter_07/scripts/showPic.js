@@ -18,6 +18,15 @@ function addLoadEvent(func) {
         }
     }
 }
+//insertAfter 函数
+function insertAfter(newElement,targetElement){
+  let parent = targetElement.parentNode;
+  if (parent.lastChild == targetElement) {
+      parent.appendChild(newElement);
+  }else {
+    parent.insertBefore(newElement,targetElement.nextSibling);
+  }
+}
 
 addLoadEvent(prepareGallery);
 
@@ -60,3 +69,17 @@ function showPic(whichpic) {
 //   alert(body_element.nodeType);
 // }
 // window.onload=countBodyChildren;
+
+function preparePlaceholder() {
+    let placeholder = document.createElement('img');
+    placeholder.setAttribute('id','placeholder');
+    placeholder.setAttribute('src','images/placeholder.gif');
+    placeholder.setAttribute('alt','my image gallery!');
+    let description = document.createElement('p');
+    description.setAttribute('id','description');
+    let destext = document.createTextNode('Choose an image.');
+    description.appendChild(destext);
+    let gallery = document.getElementById('imagegallery');
+    insertAfter(placeholder,gallery);
+    insertAfter(description,placeholder);
+}
