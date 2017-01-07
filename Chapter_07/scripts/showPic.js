@@ -18,17 +18,19 @@ function addLoadEvent(func) {
         }
     }
 }
+
+
 //insertAfter 函数
-function insertAfter(newElement,targetElement){
-  let parent = targetElement.parentNode;
-  if (parent.lastChild == targetElement) {
-      parent.appendChild(newElement);
-  }else {
-    parent.insertBefore(newElement,targetElement.nextSibling);
-  }
+function insertAfter(newElement, targetElement) {
+    let parent = targetElement.parentNode;
+    if (parent.lastChild == targetElement) {
+        parent.appendChild(newElement);
+    } else {
+        parent.insertBefore(newElement, targetElement.nextSibling);
+    }
 }
 
-addLoadEvent(prepareGallery);
+
 
 function prepareGallery() {
     if (!document.getElementsByTagName) return false;
@@ -39,8 +41,8 @@ function prepareGallery() {
     for (var i = 0; i < links.length; i++) {
         links[i].onclick = function() {
             return showPic(this);
-            return false;
         }
+        links[i].onkeypress = links[i].onclick;
     }
 }
 
@@ -52,9 +54,11 @@ function showPic(whichpic) {
     let placeholder = document.getElementById("placeholder");
     // 3. 将 source 赋值给 placeholder 从而改变 img 的 src 值
     placeholder.setAttribute("src", source);
-    if (document.getElementById("description")) {
-        // 4. 获取当前<a>元素的 title 属性的值,并保存在 text 变量中
-        let text = whichpic.getAttribute("title");
+    if (document.getElementById("description")) return false;
+    if (whichpic.getAttribute('title')) {
+      // 4. 获取当前<a>元素的 title 属性的值,并保存在 text 变量中
+      let text = whichpic.getAttribute("title");
+    } else {
         // 5. 获取id名为 description 的元素并保存在 description 变量中
         let description = document.getElementById("description");
         // 6. 将 text 赋值给 description.firstChild.nodeValue;
@@ -71,15 +75,21 @@ function showPic(whichpic) {
 // window.onload=countBodyChildren;
 
 function preparePlaceholder() {
+    if (!document.createElement) return false;
+    if (!document.createTextNode) return false;
+    if (!document.getElementById) return false;
+    if (!document.getElementById('imagegallery')) return false;
     let placeholder = document.createElement('img');
-    placeholder.setAttribute('id','placeholder');
-    placeholder.setAttribute('src','images/placeholder.gif');
-    placeholder.setAttribute('alt','my image gallery!');
+    placeholder.setAttribute('id', 'placeholder');
+    placeholder.setAttribute('src', 'images/placeholder.gif');
+    placeholder.setAttribute('alt', 'my image gallery!');
     let description = document.createElement('p');
-    description.setAttribute('id','description');
+    description.setAttribute('id', 'description');
     let destext = document.createTextNode('Choose an image.');
     description.appendChild(destext);
     let gallery = document.getElementById('imagegallery');
-    insertAfter(placeholder,gallery);
-    insertAfter(description,placeholder);
+    insertAfter(placeholder, gallery);
+    insertAfter(description, placeholder);
 }
+addLoadEvent(prepareGallery);
+addLoadEvent(preparePlaceholder);
