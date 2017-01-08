@@ -133,8 +133,7 @@ function prepareGallery() {
     for (var i = 0; i < links.length; i++) {
       links[i].onclick = function () {
           links[i].onclick = function () {
-              showPic(this);
-              // return false;
+              return showPic(this)?false : true;
           }
           links[i].onkeypress = links[i].onclick;
       }
