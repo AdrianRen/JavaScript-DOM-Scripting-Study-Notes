@@ -21,7 +21,7 @@ function addLoadEvent(func) {
 
 
 //insertAfter 函数
-function insertAfter(newElement, targetElement) {
+function insertAfter(newElement,targetElement) {
     let parent = targetElement.parentNode;
     if (parent.lastChild == targetElement) {
         parent.appendChild(newElement);
