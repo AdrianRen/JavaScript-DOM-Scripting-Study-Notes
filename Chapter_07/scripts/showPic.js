@@ -86,8 +86,8 @@
 //     addLoadEvent(prepareGallery);
 
 function addLoadEvent(func) {
-    let oldonload = window.onload;
-    if (typeof window.onload != "function") {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
         window.onload = func;
     } else {
         window.onload = function() {
@@ -98,7 +98,7 @@ function addLoadEvent(func) {
 }
 
 function insertAfter(newElement,targetElement) {
-    let parent = targetElement.parentNode;
+    var parent = targetElement.parentNode;
     if (parent.lastChild == targetElement) {
         parent.appendChild(newElement);
     } else {
@@ -107,8 +107,12 @@ function insertAfter(newElement,targetElement) {
 }
 
 function preparePlaceholder() {
+    if (!document.createElement) return false;
+    if (!document.createTextNode) return false;
+    if (!document.getElementById) return false;
+    if (!document.getElementById("imagegallery")) return false;
     // 创建一个 img 元素 存在变量: placeholder
-    let placeholder = document.createElement("img");
+    var placeholder = document.createElement("img");
     // 添加 id placeholder
     placeholder.setAttribute("id","placeholder");
     // 添加 src  images/placeholder.gif
@@ -116,27 +120,28 @@ function preparePlaceholder() {
     // 添加 alt my image gallery
     placeholder.setAttribute("alt","my image gallery");
     // 创建一个 p 元素 存在 description
-    let description = document.createElement("p");
+    var description = document.createElement("p");
     // 添加 id description
     description.setAttribute("id","description");
     // 创建TextNode Choose an image保存在 destext
-    let destext = document.createTextNode("Choose an image");
+    var destext = document.createTextNode("Choose an image");
     description.appendChild(destext);
-    let gallery = document.getElementById("imagegallery");
-    insertAfter(placeholder,gallery);
-    insertAfter(description,placeholder);
+    var gallery = document.getElementById("imagegallery");
+    insertAfter(placeholder, gallery);
+    insertAfter(description, placeholder);
 }
 
 function prepareGallery() {
+    if (!document.getElementsByTagName) return false;
+    if (!document.getElementById) return false;
+    if (!document.getElementById("imagegallery")) return false;
     let gallery = document.getElementById("imagegallery");
     let links = gallery.getElementsByTagName("a");
     for (var i = 0; i < links.length; i++) {
       links[i].onclick = function () {
-          links[i].onclick = function () {
-              return !showPic(this);
-          }
-          links[i].onkeypress = links[i].onclick;
+          return !showPic(this);
       }
+      links[i].onkeypress = links[i].onclick;
     }
 }
 
