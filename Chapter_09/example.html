@@ -5,13 +5,14 @@
     <title>Example</title>
   </head>
   <body>
-      <p id="example" style="color:grey; font-family:'Arial',sans-serif;">
+      <p id="example" style="color:#999; font-family:'Arial',sans-serif;font-size:1em;">
         An example of a paragraph
       </p>
       <script type="text/javascript">
         window.onload = function () {
             let para = document.getElementById("example");
             alert(`The font family is ${para.style.fontFamily}`);
+            alert(`The color is ${para.style.color}`);
         }
       </script>
   </body>
