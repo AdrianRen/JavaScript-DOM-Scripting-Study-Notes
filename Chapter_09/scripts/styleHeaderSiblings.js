@@ -17,3 +17,4 @@ function getNextElement() {
   }
   return null;
 }
+addLoadEvent(styleHeaderSiblings);
