@@ -31,3 +31,10 @@ function addClass(element, value) {
     element.calssName = newClassName;
   }
 }
+
+// Highlight function
+function highlightPage() {
+  if(!document.getElementsByTagName) return false;
+  if(!document.getElementById) return false;
+  let headers = document.getElementsByTagName("header");
+}
