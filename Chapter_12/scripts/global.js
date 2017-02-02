@@ -37,4 +37,5 @@ function highlightPage() {
   if(!document.getElementsByTagName) return false;
   if(!document.getElementById) return false;
   let headers = document.getElementsByTagName("header");
+  if(headers.length == 0) return false;
 }
