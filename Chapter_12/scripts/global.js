@@ -41,12 +41,16 @@ function highlightPage() {
     let navs = headers[0].getElementsByTagName("nav");
     if (navs.length == 0) return false;
     let links = navs[0].getElementsByTagName("a");
-    let linkurl;
     for (var i = 0; i < links.length; i++) {
-        linkurl = links[i].getAttribute("href");
-        if (window.location.href.indexOf(linkurl) != -1) {
-            links[i].className = "here";
-        }
+      let linkurl;
+      for (var i = 0; i < links.length; i++) {
+          linkurl = links[i].getAttribute("href");
+          if (window.location.href.indexOf(linkurl) != -1) {
+              links[i].className = "here";
+              let linktext = links[i].lastChild.nodeValue.toLowerCase();
+              document.body.setAttribute("id",linktext);
+          }
+      }
     }
 }
 addLoadEvent(highlightPage);
